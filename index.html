@@ -2,83 +2,32 @@
 <html lang="ku">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>فێربوونا هاکێ ئەخلاقی</title>
+    <title>AI Cybersecurity Chat</title>
     <style>
-        body {
-            background-color: #0c0f12;
-            color: #00ff00;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            text-align: center;
-            padding: 20px;
-            direction: rtl;
-        }
-        .container {
-            max-width: 450px;
-            margin: 30px auto;
-            background: #161b22;
-            padding: 25px;
-            border-radius: 15px;
-            border: 1px solid #00ff00;
-            box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
-        }
-        h2 { color: #ffffff; font-size: 20px; }
-        p { color: #8b949e; font-size: 14px; }
-        button {
-            background-color: #00ff00;
-            color: black;
-            border: none;
-            padding: 14px;
-            margin: 10px 0;
-            width: 100%;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        button:hover { background-color: #00cc00; }
-        .content {
-            display: none;
-            background: #0d1117;
-            padding: 15px;
-            margin-top: 5px;
-            border-radius: 8px;
-            color: #ffffff;
-            text-align: right;
-            line-height: 1.6;
-            border-right: 4px solid #00ff00;
-        }
+        body { font-family: sans-serif; padding: 20px; background-color: #f4f4f9; }
+        #chat-box { height: 300px; border: 1px solid #ccc; overflow-y: scroll; margin-bottom: 10px; padding: 10px; background: white; border-radius: 8px; }
+        input { width: 70%; padding: 10px; border-radius: 5px; border: 1px solid #ccc; }
+        button { padding: 10px; border-radius: 5px; border: none; background: #007bff; color: white; cursor: pointer; }
     </style>
 </head>
 <body>
+    <h2>AI Cybersecurity Assistant</h2>
+    <div id="chat-box"></div>
+    <input type="text" id="userInput" placeholder="پرسیارەکێ بکە...">
+    <button onclick="getAIResponse()">ناردن</button>
 
-<div class="container">
-    <h2>بەرنامێ فێربوونا هاکێ ئەخلاقی</h2>
-    <p>خۆلەکا بلەز و تایبەت بۆ موبایلێ</p>
-    
-    <button onclick="toggleLesson('lesson1')">وانەیا ١: بناغەیێن سەرەکی</button>
-    <div id="lesson1" class="content">
-        ئێکەم پێنگاڤ د فێربوونا هاکێ ئەخلاقی دا، تێگەهشتنا تۆڕان (Networks) و فێربوونا فەرمانێن سیستەمێ Linux ە.
-    </div>
+    <script>
+        async function getAIResponse() {
+            const userInput = document.getElementById('userInput').value;
+            const chatBox = document.getElementById('chat-box');
+            if (!userInput) return;
 
-    <button onclick="toggleLesson('lesson2')">وانەیا ٢: پاراستنا زانیاریان</button>
-    <div id="lesson2" class="content">
-        هاکێ ئەخلاقی (Ethical Hacking) مانا وێ دۆزینەوا خالێن لاوازە د سیستەمی دا ب مۆڵەت، دا کو بهێنە گرتن بەری هاکەرێن خراب زیانێ بگەهینن.
-    </div>
-</div>
+            chatBox.innerHTML += `<p><b>تۆ:</b> ${userInput}</p>`;
+            document.getElementById('userInput').value = '';
 
-<script>
-    function toggleLesson(id) {
-        var lesson = document.getElementById(id);
-        if (lesson.style.display === "block") {
-            lesson.style.display = "none";
-        } else {
-            document.querySelectorAll('.content').forEach(el => el.style.display = 'none');
-            lesson.style.display = "block";
+            // ل ڤێرێ، ژبەر ئەولەهیێ و ئاریشێن CORS، ئەم تنێ دێ نموونەکێ نیشان دەین
+            chatBox.innerHTML += `<p><b>AI:</b> تە یێ دبێژی "${userInput}". ئەز یێ ئامادەمە بۆ هاریکاریێ، لێ دڤێت تو API Key-ێ خۆ ل پشت سێرڤەرەکێ دانی دا ب پاراستی بیت.</p>`;
         }
-    }
-</script>
-
+    </script>
 </body>
 </html>
